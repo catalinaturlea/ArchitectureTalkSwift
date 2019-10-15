@@ -13,6 +13,8 @@
 		BDB9FF202352610200FB10A6 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FF1F2352610200FB10A6 /* UserProfile.swift */; };
 		BDB9FF222352625900FB10A6 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FF212352625900FB10A6 /* DependencyInjection.swift */; };
 		BDB9FF242353BC6F00FB10A6 /* AuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FF232353BC6F00FB10A6 /* AuthenticationServiceTests.swift */; };
+		BDD5E4F22356490300CB1271 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD5E4F12356490300CB1271 /* LoginViewModel.swift */; };
+		BDD5E4F4235649C200CB1271 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD5E4F3235649C200CB1271 /* NetworkingService.swift */; };
 		BDFBB2C223525A0E00090096 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFBB2C123525A0E00090096 /* AppDelegate.swift */; };
 		BDFBB2C423525A0E00090096 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFBB2C323525A0E00090096 /* SceneDelegate.swift */; };
 		BDFBB2C623525A0E00090096 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFBB2C523525A0E00090096 /* LoginViewController.swift */; };
@@ -44,6 +46,8 @@
 		BDB9FF1F2352610200FB10A6 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		BDB9FF212352625900FB10A6 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		BDB9FF232353BC6F00FB10A6 /* AuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		BDD5E4F12356490300CB1271 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BDD5E4F3235649C200CB1271 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		BDF722AE2CD65108110BEAF5 /* Pods-ArchitectureSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArchitectureSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample.debug.xcconfig"; sourceTree = "<group>"; };
 		BDFBB2BE23525A0E00090096 /* ArchitectureSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArchitectureSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFBB2C123525A0E00090096 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				BDFBB2EA23525E6400090096 /* UserService.swift */,
 				BDB9FF1C2352606C00FB10A6 /* AuthenticationService.swift */,
+				BDD5E4F3235649C200CB1271 /* NetworkingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				BDFBB2C523525A0E00090096 /* LoginViewController.swift */,
+				BDD5E4F12356490300CB1271 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -365,6 +371,8 @@
 				BDB9FF222352625900FB10A6 /* DependencyInjection.swift in Sources */,
 				BDB9FF202352610200FB10A6 /* UserProfile.swift in Sources */,
 				BDFBB2C423525A0E00090096 /* SceneDelegate.swift in Sources */,
+				BDD5E4F4235649C200CB1271 /* NetworkingService.swift in Sources */,
+				BDD5E4F22356490300CB1271 /* LoginViewModel.swift in Sources */,
 				BDB9FF1D2352606C00FB10A6 /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,16 +12,20 @@ protocol AuthenticationServiceProtocol {
     func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void)
 }
 
-class AuthenticationService {
+class AuthenticationService: AuthenticationServiceProtocol {
     private static var loginURL = URL(string: "https://my.app.com/login")!
     
-    let alamofire: AlamofireWrapperProtocol
+    private let alamofire: AlamofireWrapperProtocol
     
-    // Make dependencies explicit in the initiliazer
-    init(alamofire: AlamofireWrapperProtocol) {
+    // Make dependencies explicit in the initializer
+    init(alamofire: AlamofireWrapperProtocol = AlamofireWrapper()) {
         self.alamofire = alamofire
     }
     
+    /// Log the user in with email and password
+    /// - Parameter email
+    /// - Parameter password
+    /// - Parameter completion: contains the result of the login and an optional error
     func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let params = ["email": email, "password": password]
         alamofire.request(url: AuthenticationService.loginURL,

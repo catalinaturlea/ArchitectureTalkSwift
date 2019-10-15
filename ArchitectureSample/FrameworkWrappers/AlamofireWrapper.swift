@@ -22,7 +22,7 @@ protocol AlamofireWrapperProtocol {
 
 class AlamofireWrapper: AlamofireWrapperProtocol {
     
-    let alamofire: SessionManager
+    private let alamofire: SessionManager
     
     init() {
         let configuration = URLSessionConfiguration.default
@@ -47,7 +47,11 @@ class AlamofireWrapper: AlamofireWrapperProtocol {
                  encoding: ParameterEncoding,
                  headers: HTTPHeaders,
                  completion: @escaping (AlamofireResponse) -> Void) {
+        
+        // Call the framework
         alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).response(queue: DispatchQueue.global()) { (response) in
+            
+            // Send back the response in the completion block
             let response = AlamofireResponse(response: response)
             completion(response)
         }

@@ -17,7 +17,7 @@ protocol AlamofireResponseProtocol {
 
 class AlamofireResponse: AlamofireResponseProtocol {
     
-    let response: DefaultDataResponse?
+    var response: DefaultDataResponse?
     
     var data: Data?
     
