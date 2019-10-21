@@ -26,7 +26,7 @@ class AuthenticationServiceTests: XCTestCase {
         // When
         let loginExpectation = expectation(description: "Should perfom login")
         var result: Bool?
-        var loginError: Error?
+        var loginError: AlamofireError?
         authenticationService.login(email: "myemail@codetalks.com", password: "somesafepassword") { (success, error) in
             result = success
             loginError = error
@@ -44,13 +44,13 @@ class AuthenticationServiceTests: XCTestCase {
     func testFailedLogin() {
         // Given
         let response = AlamofireResponse()
-        response.error = AFError.invalidURL(url: URL(string: "someurl.com")!)
+        response.error = AlamofireError(error: AFError.invalidURL(url: URL(string: "someurl.com")!), code: 401)
         alamofireMock.response = response
         
         // When
         let loginExpectation = expectation(description: "Should perfom login")
         var result: Bool?
-        var loginError: Error?
+        var loginError: AlamofireError?
         authenticationService.login(email: "myemail@codetalks.com", password: "somesafepassword") { (success, error) in
             result = success
             loginError = error

@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    // .. Outlets
+    // Outlets
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
@@ -88,14 +88,19 @@ class LoginViewController: UIViewController {
             switch error {
             case .emptyFields:
                 // Highlight empty fields
+                self.showAlert("Please fill in the fields")
             case .invalidEmail:
                 // Prompt user for valid email
+                self.showAlert("Please use a valid email")
             case .invalidCredentials:
                 // Inform the user the credentials are wrong
+                self.showAlert("We could not log you in", message: "Please try again")
             case .noInternet:
                 // No login without internet
+                self.showAlert("You have no internet connection", message: "Please try again later")
             case .generic:
                 // Maybe offer an alternative or a contact option
+                self.showAlert("We could not log you in", message: "Please try again")
             }
         }
     }

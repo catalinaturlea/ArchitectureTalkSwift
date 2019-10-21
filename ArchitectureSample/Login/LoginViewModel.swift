@@ -10,7 +10,7 @@ import Foundation
 
 /// Define the interface
 protocol LoginViewModelProtocol {
-    func login(email: String, password: String, completion: ((Bool, LoginViewModel.LoginError?) -> Void))
+    func login(email: String, password: String, completion: @escaping ((Bool, LoginViewModel.LoginError?) -> Void))
 }
 
 class LoginViewModel: LoginViewModelProtocol {
@@ -18,13 +18,19 @@ class LoginViewModel: LoginViewModelProtocol {
     /// Define all possible errors to be displayed
     enum LoginError {
         case emptyFields, invalidEmail, invalidCredentials, noInternet, generic
+
+        var title: String {
+            
+        }
     }
     
     /// Explicit dependencies for the services
     let authenticationService: AuthenticationServiceProtocol
+    let networkingService: NetworkingServiceProtocol
     
     /// Injecting the dependencies in the initliser
-    init(authenticationService: AuthenticationServiceProtocol = AuthenticationService()) {
+    init(authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
+         networkingService: NetworkingServiceProtocol = NetworkingService()) {
         self.authenticationService = authenticationService
         self.networkingService = networkingService
     }
@@ -33,7 +39,7 @@ class LoginViewModel: LoginViewModelProtocol {
     /// - Parameter email
     /// - Parameter password
     /// - Parameter completion: will return the success status and an error result in case of failure
-    func login(email: String, password: String, completion: ((Bool, LoginError?) -> Void)) {
+    func login(email: String, password: String, completion: @escaping ((Bool, LoginError?) -> Void)) {
         if email.isEmpty || password.isEmpty {
             completion(false, .emptyFields)
             return
@@ -43,7 +49,7 @@ class LoginViewModel: LoginViewModelProtocol {
             return
         }
         
-        guard networkingService.hasInternet() else {
+        guard networkingService.hasInternetConnection() else {
             completion(false, .noInternet)
             return
         }
@@ -53,8 +59,12 @@ class LoginViewModel: LoginViewModelProtocol {
                 completion(true, nil)
                 return
             }
-            switch error {
-            case .invalidCredentials:
+            guard let error = error else {
+                completion(false, nil)
+                return
+            }
+            switch error.code {
+            case 401:
                 completion(false, .invalidCredentials)
             default:
                 completion(false, .generic)

@@ -49,7 +49,12 @@ class AlamofireWrapper: AlamofireWrapperProtocol {
                  completion: @escaping (AlamofireResponse) -> Void) {
         
         // Call the framework
-        alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).response(queue: DispatchQueue.global()) { (response) in
+        alamofire.request(url,
+                          method: method,
+                          parameters: parameters,
+                          encoding: encoding,
+                          headers: headers)
+            .response(queue: DispatchQueue.global()) { (response) in
             
             // Send back the response in the completion block
             let response = AlamofireResponse(response: response)

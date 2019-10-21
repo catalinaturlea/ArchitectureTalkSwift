@@ -12,7 +12,13 @@ import Alamofire
 // To check parsings and logic when errors are received
 protocol AlamofireResponseProtocol {
     var data: Data? { get }
-    var error: Error? { get }
+    var error: AlamofireError? { get }
+}
+
+struct AlamofireError {
+    var error: Error?
+
+    var code: Int
 }
 
 class AlamofireResponse: AlamofireResponseProtocol {
@@ -21,7 +27,7 @@ class AlamofireResponse: AlamofireResponseProtocol {
     
     var data: Data?
     
-    var error: Error?
+    var error: AlamofireError?
     
     init() {
         
@@ -30,7 +36,9 @@ class AlamofireResponse: AlamofireResponseProtocol {
     init(response: DefaultDataResponse) {
         self.response = response
         self.data = response.data
-        self.error = response.error
+
+        let statusCode = response.response?.statusCode ?? -1
+        self.error = AlamofireError(error: response.error, code: statusCode)
     }
 
 }

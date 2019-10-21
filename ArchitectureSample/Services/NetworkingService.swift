@@ -9,9 +9,12 @@
 import Foundation
 
 protocol NetworkingServiceProtocol {
-    
+    func hasInternetConnection() -> Bool
 }
 
 class NetworkingService: NetworkingServiceProtocol {
     
+    func hasInternetConnection() -> Bool {
+        return true
+    }
 }

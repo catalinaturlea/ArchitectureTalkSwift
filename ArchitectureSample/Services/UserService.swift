@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 protocol UserServiceProtocol {
-    func fetchUserProfile(completion: @escaping (UserProfile?, Error?) -> Void)
+    func fetchUserProfile(completion: @escaping (UserProfile?, AlamofireError?) -> Void)
 }
 
 class UserService: UserServiceProtocol {
@@ -22,7 +22,7 @@ class UserService: UserServiceProtocol {
         self.alamofire = alamofire
     }
     
-    func fetchUserProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
+    func fetchUserProfile(completion: @escaping (UserProfile?, AlamofireError?) -> Void) {
         alamofire.request(url: UserService.userProfileUrl, method: .get, completion: { (response) in
             guard let data = response.data else {
                 completion(nil, response.error)

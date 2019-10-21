@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AuthenticationServiceProtocol {
-    func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void)
+    func login(email: String, password: String, completion: @escaping (Bool, AlamofireError?) -> Void)
 }
 
 class AuthenticationService: AuthenticationServiceProtocol {
@@ -26,7 +26,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     /// - Parameter email
     /// - Parameter password
     /// - Parameter completion: contains the result of the login and an optional error
-    func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+    func login(email: String, password: String, completion: @escaping (Bool, AlamofireError?) -> Void) {
         let params = ["email": email, "password": password]
         alamofire.request(url: AuthenticationService.loginURL,
                           method: .post,
@@ -36,7 +36,6 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 completion(true, nil)
                 return
             }
-            
             completion(false, error)
         })
     }

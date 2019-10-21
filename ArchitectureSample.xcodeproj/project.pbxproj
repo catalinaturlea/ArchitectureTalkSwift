@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		64CB062A520DEE4DDC28A90E /* Pods_ArchitectureSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3287559872B6FD65792A6813 /* Pods_ArchitectureSampleTests.framework */; };
+		BD19AC202357323D00D38516 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19AC1F2357323C00D38516 /* ViewControllerExtensions.swift */; };
+		BD19AC222357394500D38516 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19AC212357394500D38516 /* LoginViewModelTests.swift */; };
 		BD9F3CBEA9B259D8C92F9079 /* Pods_ArchitectureSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A41425FB9E23C261F227F64 /* Pods_ArchitectureSample.framework */; };
 		BDB9FF1D2352606C00FB10A6 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FF1C2352606C00FB10A6 /* AuthenticationService.swift */; };
 		BDB9FF202352610200FB10A6 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FF1F2352610200FB10A6 /* UserProfile.swift */; };
@@ -42,6 +44,8 @@
 		8A41425FB9E23C261F227F64 /* Pods_ArchitectureSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArchitectureSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD1B0840D0228F8C0030A06 /* Pods-ArchitectureSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArchitectureSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArchitectureSampleTests/Pods-ArchitectureSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5428D5AEC48EF8018DF68E2 /* Pods-ArchitectureSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArchitectureSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArchitectureSampleTests/Pods-ArchitectureSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD19AC1F2357323C00D38516 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		BD19AC212357394500D38516 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		BDB9FF1C2352606C00FB10A6 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		BDB9FF1F2352610200FB10A6 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		BDB9FF212352625900FB10A6 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				BDFBB2E323525AB400090096 /* Services */,
 				BDFBB2E523525B0500090096 /* FrameworkWrappers */,
 				BDB9FF212352625900FB10A6 /* DependencyInjection.swift */,
+				BD19AC1F2357323C00D38516 /* ViewControllerExtensions.swift */,
 			);
 			path = ArchitectureSample;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				BDFBB2D823525A1100090096 /* ArchitectureSampleTests.swift */,
 				BDFBB2DA23525A1100090096 /* Info.plist */,
 				BDB9FF232353BC6F00FB10A6 /* AuthenticationServiceTests.swift */,
+				BD19AC212357394500D38516 /* LoginViewModelTests.swift */,
 			);
 			path = ArchitectureSampleTests;
 			sourceTree = "<group>";
@@ -318,20 +324,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ArchitectureSample/Pods-ArchitectureSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB9CDFEEB965892D2B210E47 /* [CP] Check Pods Manifest.lock */ = {
@@ -367,6 +368,7 @@
 				BDFBB2E923525D3F00090096 /* AlamofireResponse.swift in Sources */,
 				BDFBB2EB23525E6400090096 /* UserService.swift in Sources */,
 				BDFBB2C223525A0E00090096 /* AppDelegate.swift in Sources */,
+				BD19AC202357323D00D38516 /* ViewControllerExtensions.swift in Sources */,
 				BDFBB2E723525B1F00090096 /* AlamofireWrapper.swift in Sources */,
 				BDB9FF222352625900FB10A6 /* DependencyInjection.swift in Sources */,
 				BDB9FF202352610200FB10A6 /* UserProfile.swift in Sources */,
@@ -381,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD19AC222357394500D38516 /* LoginViewModelTests.swift in Sources */,
 				BDB9FF242353BC6F00FB10A6 /* AuthenticationServiceTests.swift in Sources */,
 				BDFBB2D923525A1100090096 /* ArchitectureSampleTests.swift in Sources */,
 			);
