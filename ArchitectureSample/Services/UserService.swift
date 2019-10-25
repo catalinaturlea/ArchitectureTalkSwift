@@ -10,20 +10,20 @@ import Foundation
 import Alamofire
 
 protocol UserServiceProtocol {
-    func fetchUserProfile(completion: @escaping (UserProfile?, AlamofireError?) -> Void)
+    func fetchUserProfile(completion: @escaping (UserProfile?, NetworkError?) -> Void)
 }
 
 class UserService: UserServiceProtocol {
     private static var userProfileUrl = URL(string: "https://my.app.com/profile")!
     
-    let alamofire: AlamofireWrapper
+    let network: NetworkWrapper
     
-    init(alamofire: AlamofireWrapper) {
-        self.alamofire = alamofire
+    init(network: NetworkWrapper) {
+        self.network = network
     }
     
-    func fetchUserProfile(completion: @escaping (UserProfile?, AlamofireError?) -> Void) {
-        alamofire.request(url: UserService.userProfileUrl, method: .get, completion: { (response) in
+    func fetchUserProfile(completion: @escaping (UserProfile?, NetworkError?) -> Void) {
+        network.triggerRequest(url: UserService.userProfileUrl, method: .get, completion: { (response) in
             guard let data = response.data else {
                 completion(nil, response.error)
                 return

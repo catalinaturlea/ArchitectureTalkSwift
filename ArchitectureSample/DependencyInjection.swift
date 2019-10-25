@@ -10,10 +10,12 @@ import Foundation
 
 class DependecyInjection {
     
-    private(set) var userService: UserServiceProtocol!
-    private(set) var alamofire: AlamofireWrapper!
+    static let container = DependecyInjection()
     
-    init() {
+    private(set) var userService: UserServiceProtocol!
+    private(set) var network: NetworkWrapper!
+    
+    private init() {
         setupAllServices()
     }
     
@@ -21,10 +23,10 @@ class DependecyInjection {
         // Start with the ones that have no dependencies
         
         // In our case, the networking framework
-        alamofire = AlamofireWrapper()
+        network = NetworkWrapper()
         
         // Continue with the components dependent on what you have already initialised
-        userService = UserService(alamofire: alamofire)
+        userService = UserService(network: network)
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 
 /// Define the interface
 protocol LoginViewModelProtocol {
-    func login(email: String, password: String, completion: @escaping ((Bool, LoginViewModel.LoginError?) -> Void))
+    func login(email: String, password: String, completion: @escaping ((LoginViewModel.LoginError?) -> Void))
 }
 
 class LoginViewModel: LoginViewModelProtocol {
@@ -18,10 +18,6 @@ class LoginViewModel: LoginViewModelProtocol {
     /// Define all possible errors to be displayed
     enum LoginError {
         case emptyFields, invalidEmail, invalidCredentials, noInternet, generic
-
-        var title: String {
-            
-        }
     }
     
     /// Explicit dependencies for the services
@@ -39,40 +35,39 @@ class LoginViewModel: LoginViewModelProtocol {
     /// - Parameter email
     /// - Parameter password
     /// - Parameter completion: will return the success status and an error result in case of failure
-    func login(email: String, password: String, completion: @escaping ((Bool, LoginError?) -> Void)) {
+    func login(email: String, password: String, completion: @escaping ((LoginError?) -> Void)) {
         if email.isEmpty || password.isEmpty {
-            completion(false, .emptyFields)
+            completion(.emptyFields)
             return
         }
         if !isValidEmail(email) {
-            completion(false, .invalidEmail)
+            completion(.invalidEmail)
             return
         }
         
         guard networkingService.hasInternetConnection() else {
-            completion(false, .noInternet)
+            completion(.noInternet)
             return
         }
         
-        authenticationService.login(email: email, password: password, completion: { (success, error) in
-            if success {
-                completion(true, nil)
-                return
-            }
+        authenticationService.login(email: email, password: password, completion: { ( error) in
             guard let error = error else {
-                completion(false, nil)
+                completion(nil)
                 return
             }
             switch error.code {
             case 401:
-                completion(false, .invalidCredentials)
+                completion(.invalidCredentials)
             default:
-                completion(false, .generic)
+                completion(.generic)
             }
         })
     }
     
     func isValidEmail(_ email: String) -> Bool {
-        return true
+        let emailRegEx = "[0-9a-z._%+-]+@[a-z0-9.-]+\\.[a-z]{2,64}"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email.lowercased())
     }
 }

@@ -44,10 +44,11 @@ class LoginViewController: UIViewController {
 //            return
 //        }
 //
-//        Alamofire.shared.request("https://my.app.com/login",
+//        let params = ["email": email, "password": password]
+//        let request = Alamofire.SessionManager.default.request("https://my.app.com/login",
 //                                 method: .POST,
-//                                 parameters: nil,
-//                                 encoding: .URLEncoding).responseJSON { (response) in
+//                                 parameters: params)
+//            request.responseJSON { (response) in
 //            switch respose.status {
 //            case .succeeded:
 //            // Show the next ViewController
@@ -76,11 +77,13 @@ class LoginViewController: UIViewController {
 //            }
 //
 //            // Show alert for error
+    
+    
 //        })
 //    }
     
     func login(email: String, password: String) {
-        viewModel.login(email: email, password: password) { (success, loginError) in
+        viewModel.login(email: email, password: password) { (loginError) in
             guard let error = loginError else {
                 // Show the next ViewController
                 return
